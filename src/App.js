@@ -39,13 +39,13 @@ const App = () => {
       >
         <Row gutter={24}>
           <Col xs={24} sm={12}>
-            <Form.Item name="name" label={"name"}>
+            <Form.Item name="name" label={"Nome"}>
               <Input />
             </Form.Item>
-            <Form.Item name="email" label={"email"}>
+            <Form.Item name="email" label={"E-mail"}>
               <Input />
             </Form.Item>
-            <Form.Item name="cpf" label={"cpf"}>
+            <Form.Item name="cpf" label={"CPF"}>
               <Input />
             </Form.Item>
             <Button type="primary" htmlType="submit" className="form-button">
