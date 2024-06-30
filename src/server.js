@@ -18,6 +18,18 @@ app.post('/users', (req, res) => {
   res.status(201).json(newUser);
 });
 
+// Deletar usuário
+app.delete('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const index = users.findIndex(user => user.id === id);
+  if (index !== -1) {
+    users.splice(index, 1);
+    res.status(204).send();
+  } else {
+    res.status(404).json({ message: 'User not found' });
+  }
+});
+
 app.listen(3001, () => {
   console.log('Server is running on port 3001');
 });

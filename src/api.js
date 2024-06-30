@@ -12,6 +12,18 @@ export const getUsers = async () => {
   }
 };
 
+
+export const deleteUser = async (userid) => {
+  try {
+    const response = await api.delete(`users/${userid}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    throw error;
+  }
+} 
+
+
 export const createUser = async (user) => {
   try {
     const response = await api.post('users', user, {

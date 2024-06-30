@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getUsers, createUser } from "./Api";
+import { getUsers, createUser, deleteUser } from "./Api";
 import { Form, Input, Button, Row, Col } from "antd";
+
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -24,6 +25,17 @@ const App = () => {
       loadUsers();
     }
   };
+
+  const handleDelete = async (userid) => {
+    try {
+      await deleteUser(userid);
+    }catch (error){
+      console.error("Erro ao Deletar usuário", error);
+    } finally {
+      loadUsers();
+    }
+  }
+
 
   useEffect(() => {
     loadUsers();
@@ -57,7 +69,10 @@ const App = () => {
       <ul>
         {users.map((user, index) => (
           <li key={index}>
-            {user.name} - {user.email} - {user.cpf}
+            {user.name} - {user.email} - {user.cpf}{" "}
+            <Button onClick={() => handleDelete(user.id)} danger>
+              Deletar
+            </Button>
           </li>
         ))}
       </ul>
