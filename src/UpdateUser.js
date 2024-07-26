@@ -1,13 +1,15 @@
+import { api } from './Api';
+
 export const updateUser = async (id, user) => {
-    const response = await fetch(`http://localhost:3000/users/${id}`, {
-      method: 'PUT',
+  try {
+    const response = await api.put(`users/${id}`, user, {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user),
     });
-    if (!response.ok) {
-      throw new Error('Failed to update user');
-    }
-    return await response.json();
-  };
+    return response.data;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
